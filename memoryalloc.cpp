@@ -1,60 +1,42 @@
 #include <iostream>
 using namespace std;
 
-class shop {
-    int itemid[10];
-    int itemprice[10];
+class Shop
+{
+    int itemId[10];
+    int itemPrice[10];
     int counter;
 
 public:
-    void initcounter(void);
-    void getprice(void);
-    void setprice(void);
-    void displayprice(void);
+    void initCounter(void) { counter = 0; }
+    void setPrice(void);
+    void displayPrice(void);
 };
 
-void shop::initcounter(void) {
-    counter = 0;
-}
-
-void shop::getprice(void) {
-    cout << "Enter ID of your item: ";
-    cin >> itemid[counter];
+void Shop ::setPrice(void)
+{
+    cout << "Enter Id of your item no " << counter + 1 << endl;
+    cin >> itemId[counter];
+    cout << "Enter Price of your item" << endl;
+    cin >> itemPrice[counter];
     counter++;
 }
 
-void shop::setprice(void) {
-    cout << "Enter price of item with ID "
-         << itemid[counter - 1] << ": ";
-    cin >> itemprice[counter - 1];
-}
-
-void shop::displayprice(void) {
-    for (int i = 0; i < counter; i++) {
-        cout << "The price of item with ID "
-             << itemid[i]
-             << " is "
-             << itemprice[i]
-             << endl;
+void Shop ::displayPrice(void)
+{
+    for (int i = 0; i < counter; i++)
+    {
+        cout << "The Price of item with Id " << itemId[i] << " is " << itemPrice[i] << endl;
     }
 }
 
-int main() {
-    shop dukaan;
-
-    dukaan.initcounter();
-
-    dukaan.getprice();
-    dukaan.setprice();
-
-    dukaan.getprice();
-    dukaan.setprice();
-
-    dukaan.getprice();
-    dukaan.setprice();
-
-    dukaan.displayprice();
-
+int main()
+{
+    Shop dukaan;
+    dukaan.initCounter();
+    dukaan.setPrice();
+    dukaan.setPrice();
+    dukaan.setPrice();
+    dukaan.displayPrice();
     return 0;
 }
-
