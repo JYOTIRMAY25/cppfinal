@@ -1,0 +1,5 @@
+// array of Objects & Passing Objects as Function Arguments in C++
+
+#include <iostream>
+using namespace std;
+
