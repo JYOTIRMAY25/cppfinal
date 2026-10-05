@@ -3,41 +3,63 @@
 #include <iostream>
 using namespace std;
 
-// Forward declaration of Complex so calculator knows it exists
+// Forward declaration
 class Complex;
 
-class calculator {
+class Calculator
+{
 public:
-    int sumrealcomplex(Complex o1, Complex o2);
-};
-
-class Complex {
-    int a, b;
-    // Changed lowercase 'complex' to capitalized 'Complex' here:
-    friend int calculator::sumrealcomplex(Complex o1, Complex o2);
-public:
-    void setNumber(int n1, int n2) {
-        a = n1;
-        b = n2;
+    int add(int a, int b)
+    {
+        return (a + b);
     }
 
-    void printNumber() {
+    int sumRealComplex(Complex, Complex);
+    int sumCompComplex(Complex, Complex);
+};
+
+class Complex
+{
+    int a, b;
+    // Declaring the entire calculator class as a friend
+    friend class Calculator;
+
+public:
+    void setNumber(int n1, int n2)
+    {
+        a = n1;
+        b = n2; // Fixed the trailing 'a' typo
+    }
+
+    void printNumber()
+    {
         cout << "Your number is " << a << " + " << b << "i" << endl;
     }
 };
 
-// Changed lowercase 'complex' to capitalized 'Complex' here too:
-int calculator::sumrealcomplex(Complex o1, Complex o2) {
+int Calculator::sumRealComplex(Complex o1, Complex o2)
+{
     return (o1.a + o2.a);
 }
 
-int main() {
-    Complex c1, c2;
-    c1.setNumber(1, 4);
-    c2.setNumber(5, 6);
+int Calculator::sumCompComplex(Complex o1, Complex o2)
+{
+    return (o1.b + o2.b);
+}
 
-    calculator calc;
-    cout << "Sum of real parts is " << calc.sumrealcomplex(c1, c2) << endl;
-
+int main()
+{
+    Complex o1, o2;
+    o1.setNumber(1, 4);
+    o2.setNumber(5, 7);
+    
+    Calculator calc;
+    
+    int res = calc.sumRealComplex(o1, o2);
+    cout << "The sum of real part of o1 and o2 is " << res << endl;
+    
+    int resc = calc.sumCompComplex(o1, o2);
+    cout << "The sum of complex part of o1 and o2 is " << resc << endl;
+    
     return 0;
 }
